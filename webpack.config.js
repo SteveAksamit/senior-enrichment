@@ -1,6 +1,6 @@
 'use strict';
 
-const { resolve } = require('path')
+var webpack = require('webpack');
 
 module.exports = {
   entry: './app/main.jsx',
@@ -11,14 +11,14 @@ module.exports = {
   context: __dirname,
   devtool: 'source-map',
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: ['', '.js', '.jsx']
   },
   module: {
     loaders: [
       {
         test: /jsx?$/,
-        include: resolve(__dirname, './app'),
-        loader: 'babel-loader',
+        exclude: /(node_modules|bower_components)/,
+        loader: 'babel',
         query: {
           presets: ['react', 'es2015']
         }
