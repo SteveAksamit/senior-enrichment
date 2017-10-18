@@ -36,24 +36,6 @@ router.post('/', ((req, res, next) => {
 
 
 //update student
-router.put('/', ((req, res, next) => {
-  Students.findOne({
-    where: {
-      id: req.body.id
-    }
-  })
-    .then(studentToUpdate => {
-      studentToUpdate.update(
-        req.body
-      )
-    })
-    .then(() => {
-      res.json("updated")
-    })
-    .catch(next);
-  }))
-
-//update student campus
 router.put('/:id', ((req, res, next) => {
   Students.findOne({
     where: {
@@ -61,12 +43,29 @@ router.put('/:id', ((req, res, next) => {
     }
   })
     .then(studentToUpdate => {
-      studentToUpdate.update(
-        {campusId: req.body.campusId}
+      return studentToUpdate.update(
+        req.body
       )
     })
-    .then(() => {
-      res.json("updated")
+    .then((updatedStudent) => {
+      res.json(updatedStudent)
+    })
+    .catch(next);
+  }))
+
+//update student campus
+router.put('/:id/campus', ((req, res, next) => {
+  Students.findOne({
+    where: {
+      id: req.params.id
+    }
+  })
+    .then(studentToUpdate => {
+      //MAGIC METHOD!!!
+      return studentToUpdate.setCampus(req.body.campusId)
+    })
+    .then((updatedStudent) => {
+      res.json(updatedStudent)
     })
     .catch(next)
 }))

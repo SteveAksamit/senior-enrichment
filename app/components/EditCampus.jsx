@@ -20,10 +20,11 @@ export default class EditCampus extends Component {
     this.unsubscribe();
   }
 
+
   handleEditCampus(event) {
     event.preventDefault();
     const editedCampus = {
-      id: this.state.singleCampus.selectedCampus.id,
+      id: this.state.campuses.selectedCampus.id,
       location: event.target.location.value
     }
     store.dispatch(editCampus(editedCampus));
@@ -33,7 +34,7 @@ export default class EditCampus extends Component {
 
 
   render() {
-    const campus = this.state.singleCampus.selectedCampus;
+    const campus = this.state.campuses.selectedCampus;
     return (
       <div>
         <div className="header">

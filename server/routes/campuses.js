@@ -36,16 +36,19 @@ router.post('/', ((req, res, next) => {
 }));
 
 //update campus
-router.put('/', ((req, res, next) => {
+router.put('/:id', ((req, res, next) => {
   return Campuses.findOne({
     where: {
-      id: req.body.id
+      id: req.params.id
     }
   })
     .then(campusToUpdate => {
-      campusToUpdate.update({
+      return campusToUpdate.update({
         location: req.body.location
-      });
+      })
+      .then(updatedCampus =>{
+        res.json(updatedCampus)
+      })
     })
     .catch(next);
 }));
@@ -57,8 +60,8 @@ router.delete('/:id', ((req, res, next) => {
       id: req.params.id
     }
   })
-    .then(() => {
-      res.json('campus deleted');
+    .then((deletedCampus) => {
+      res.json(deletedCampus);
     })
     .catch(next);
 

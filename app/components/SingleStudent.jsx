@@ -12,36 +12,34 @@ export default class SingleStudent extends Component {
     this.handleDeleteStudent = this.handleDeleteStudent.bind(this);
   }
 
-  componentDidMount() {
-    const studentId = this.props.match.params.studentId;
-    store.dispatch(fetchStudent(studentId));
-    this.unsubscribe = store.subscribe(() =>
-      this.setState(store.getState())
-    );
-  }
+   componentDidMount() {
+      store.dispatch(fetchStudent(this.props.match.params.studentId ))
+      this.unsubscribe = store.subscribe(() =>
+        this.setState(store.getState())
+      );
+    }
+
 
   componentWillUnmount() {
     this.unsubscribe();
   }
 
   handleDeleteStudent(e) {
-    const studentId = this.state.singleStudent.selectedStudent.id;
+    const studentId = this.state.students.selectedStudent.id;
     store.dispatch(deleteStudent(studentId));
     this.props.history.push('/students');
   }
 
 
-  //implemented funky logic to get the campus name out of my filter. It was giving a type error when I did it the normal way.
   render() {
     var name = '';
-    const student = this.state.singleStudent.selectedStudent;
-    const campusId = this.state.singleCampus.selectedCampus.id;
-    var campus = this.state.campuses.filter((theCampus) => {
+    const student = this.state.students.selectedStudent;
+    const campusId = this.state.campuses.selectedCampus.id;
+    var campus = this.state.campuses.allCampuses.filter((theCampus) => {
       return student.campusId === theCampus.id;
     });
     var campusObj = campus[0];
     if (campusObj) {
-      console.log(campusObj.id)
       var campName = campusObj.name;
       var campId = campusObj.id;
     }
@@ -62,4 +60,3 @@ export default class SingleStudent extends Component {
     );
   }
 }
-

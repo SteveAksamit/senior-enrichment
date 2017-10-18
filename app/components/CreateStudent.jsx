@@ -33,7 +33,7 @@ export default class CreateStudent extends Component {
   }
 
   render() {
-    const campuses = this.state.campuses;
+    const campuses = this.state.campuses.allCampuses;
     return (
       <div>
         <div className="header">

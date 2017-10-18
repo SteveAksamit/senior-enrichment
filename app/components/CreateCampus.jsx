@@ -27,9 +27,7 @@ export default class CreateCampus extends Component {
       location: event.target.location.value
     }
     store.dispatch(createCampus(newCampus));
-    event.preventDefault();
-    this.props.history.push('/')
-
+    this.props.history.push('/');
   }
 
   render() {

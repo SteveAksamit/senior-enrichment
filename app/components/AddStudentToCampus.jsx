@@ -23,18 +23,18 @@ export default class AddStudentToCampus extends Component {
 
   handleEditStudent(event) {
     event.preventDefault();
-    const campus = this.state.singleCampus.selectedCampus;
+    const campus = this.state.campuses.selectedCampus;
     const studentToAddToCampus = {
       id: event.target.studentId.value,
       campusId: campus.id
     }
     store.dispatch(editStudentCampus(studentToAddToCampus));
-    this.props.history.push('/campuses')
+    this.props.history.push(`/campuses/${campus.id}`)
   }
 
   render() {
-    const campus = this.state.singleCampus.selectedCampus;
-    const students = this.state.students;
+    const campus = this.state.campuses.selectedCampus;
+    const students = this.state.students.allStudents;
     return (
       <div>
         <div className="header">

@@ -15,11 +15,9 @@ import store, { fetchCampuses, fetchStudents } from '../store';
 
 export default class Main extends Component {
 
-  componentWillMount() {
-    const studentsThunk = fetchStudents();
-    const campusesThunk = fetchCampuses();
-    store.dispatch(campusesThunk);
-    store.dispatch(studentsThunk);
+  componentDidMount() {
+    store.dispatch(fetchCampuses());
+    store.dispatch(fetchStudents());
 
   }
 

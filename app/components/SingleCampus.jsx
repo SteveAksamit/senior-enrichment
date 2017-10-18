@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import store, { fetchCampus, deleteCampus } from '../store';
+import store, { fetchCampus, deleteCampus, selectedSingleCampus } from '../store';
 import { Link } from 'react-router-dom';
 
 
@@ -25,13 +25,13 @@ export default class SingleCampus extends Component {
   }
 
   handleDeleteCampus() {
-    const campId = this.state.singleCampus.selectedCampus.id;
+    const campId = this.state.campuses.selectedCampus.id;
     store.dispatch(deleteCampus(campId));
     this.props.history.push('/campuses');
   }
 
   render() {
-    const campus = this.state.singleCampus.selectedCampus;
+    const campus = this.state.campuses.selectedCampus;
     return (
       <div>
         <div className="header">
@@ -42,7 +42,7 @@ export default class SingleCampus extends Component {
         <h3>Campus Location:   {campus.location}</h3>
         <h3>Enrolled Students:</h3>
         <ol className="list-group">
-          {this.state.students.filter(student =>
+          {this.state.students.allStudents.filter(student =>
             campus.id === student.campusId).map(student => {
               return (
                 <li key={student.id}>
@@ -53,7 +53,7 @@ export default class SingleCampus extends Component {
           }
         </ol>
         <p><Link to={'/editcampus'} className="btn">Edit Campus</Link></p>
-        <p><Link to={'/addstudenttocampus'} className="btn">Add Student To Campus</Link></p>
+        <p><Link to={'/addstudenttocampus'} className="btn" onClick={selectedSingleCampus}>Add Student To Campus</Link></p>
         <p><a href="#" value={campus.id} className="btn" onClick={this.handleDeleteCampus}>Delete Campus</a></p>
 
         <hr />

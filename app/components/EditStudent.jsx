@@ -25,7 +25,7 @@ export default class EditStudent extends Component {
     event.preventDefault();
 
     const editedStudent = {
-      id: this.state.singleStudent.selectedStudent.id,
+      id: this.state.students.selectedStudent.id,
       name: event.target.name.value,
       email: event.target.email.value,
       campusId: event.target.campusId.value
@@ -35,9 +35,9 @@ export default class EditStudent extends Component {
   }
 
   render() {
-    const student = this.state.singleStudent.selectedStudent;
-    const campus = this.state.campuses.find((theCampus) => student.campusId === theCampus.id);
-    const campuses = this.state.campuses;
+    const student = this.state.students.selectedStudent;
+    const campus = this.state.campuses.allCampuses.find((theCampus) => student.campusId === theCampus.id);
+    const campuses = this.state.campuses.allCampuses;
     return (
       <div>
         <div className="header">

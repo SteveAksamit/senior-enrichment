@@ -23,9 +23,10 @@ export default class AllCampuses extends Component {
 
 
   render() {
-    const campuses = this.state.campuses;
+    const campuses = this.state.campuses.allCampuses;
     return (
       <div>
+          <p><Link to={'/createcampus'} className="btn">Create New Campus</Link></p>
         <div className="header">
           <h1 className="header-heading">Campuses</h1>
         </div>
@@ -48,9 +49,7 @@ export default class AllCampuses extends Component {
             })}
           </tbody>
         </table>
-        <hr />
-        <p><Link to={'/createcampus'} className="btn">Create New Campus</Link></p>
-        <hr />
+
       </div>
     )
   }
