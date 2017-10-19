@@ -74,7 +74,7 @@ export default class EditStudent extends Component {
             <label> Assign New Campus
                 <br />
               <br />
-              <select name='campusId'>
+              <select name='campusId' >
                 {campuses.map((campus) =>
                   <option key={campus.id} value={campus.id}>{campus.name}</option>
                 )}

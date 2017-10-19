@@ -57,14 +57,10 @@ export default class SingleCampus extends Component {
             })
           }
         </ol>
-        <div class="container">
-          <div class="row">
               <Link to={'/campuses/editcampus'} className="btn">Edit Campus</Link>
               <a href="#" value={campus.id} className="btn" onClick={this.handleDeleteCampus}>Delete Campus</a>
               <Link to={'/campuses/addstudenttocampus'} className="btn" onClick={selectedSingleCampus}>Add Student To Campus</Link>
             <hr></hr>
-          </div>
-        </div>
       </div>
     );
   }
