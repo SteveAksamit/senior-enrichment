@@ -15,7 +15,7 @@ export default class SingleCampus extends Component {
       <nav className="navbar navbar-fixed-top navbar-inverse">
         <div className="container-fluid">
           <div className="navbar-header">
-            <h6 className="navbar-brand">Home</h6>
+          <Link to={'/'}><h6 className="navbar-brand">Home</h6></Link>
           </div>
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul className="nav navbar-nav">

@@ -2,7 +2,7 @@ const router = require('express').Router();
 module.exports = router;
 const models = require('../../db/models');
 const Students = models.Students;
-const Campuses = models.Campuses
+const Campuses = models.Campuses;
 
 //get all students
 router.get('/', ((req, res, next) => {
@@ -36,10 +36,10 @@ router.post('/', ((req, res, next) => {
           id: student.id
         },
         include: {all: true}
-      })
+      });
     })
     .then(newStudent => {
-      res.json(newStudent)
+      res.json(newStudent);
     })
     .catch(next);
 }));
@@ -55,13 +55,21 @@ router.put('/:id', ((req, res, next) => {
     .then(studentToUpdate => {
       return studentToUpdate.update(
         req.body
-      )
+      );
+    })
+    .then(student => {
+      return Students.findOne({
+        where: {
+          id: student.id
+        },
+        include: {all: true}
+      });
     })
     .then((updatedStudent) => {
-      res.json(updatedStudent)
+      res.json(updatedStudent);
     })
     .catch(next);
-}))
+}));
 
 //update student campus
 router.put('/:id/campus', ((req, res, next) => {
@@ -72,13 +80,21 @@ router.put('/:id/campus', ((req, res, next) => {
   })
     .then(studentToUpdate => {
       //MAGIC METHOD!!!
-      return studentToUpdate.setCampus(req.body.campusId)
+      return studentToUpdate.setCampus(req.body.campusId);
+    })
+    .then(student => {
+      return Students.findOne({
+        where: {
+          id: student.id
+        },
+        include: {all: true}
+      });
     })
     .then((updatedStudent) => {
-      res.json(updatedStudent)
+      res.json(updatedStudent);
     })
-    .catch(next)
-}))
+    .catch(next);
+}));
 
 // delete student
 router.delete('/:id', ((req, res, next) => {
@@ -88,7 +104,7 @@ router.delete('/:id', ((req, res, next) => {
     }
   })
     .then(() => {
-      res.json("student deleted")
+      res.json('student deleted');
     })
     .catch(next);
-}))
+}));

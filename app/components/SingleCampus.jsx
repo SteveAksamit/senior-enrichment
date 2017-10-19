@@ -46,7 +46,7 @@ export default class SingleCampus extends Component {
             campus.id === student.campusId).map(student => {
               return (
                 <li key={student.id}>
-                  <Link to={`/students/${student.id}`}>{student.name}</Link>
+                  <Link to={`/students/view/${student.id}`}>{student.name}</Link>
                 </li>
               );
             })
