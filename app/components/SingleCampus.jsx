@@ -9,7 +9,7 @@ export default class SingleCampus extends Component {
   constructor() {
     super();
     this.state = store.getState();
-    this.handleDeleteCampus = this.handleDeleteCampus.bind(this)
+    this.handleDeleteCampus = this.handleDeleteCampus.bind(this);
   }
 
   componentDidMount() {
@@ -52,8 +52,8 @@ export default class SingleCampus extends Component {
             })
           }
         </ol>
-        <p><Link to={'/editcampus'} className="btn">Edit Campus</Link></p>
-        <p><Link to={'/addstudenttocampus'} className="btn" onClick={selectedSingleCampus}>Add Student To Campus</Link></p>
+        <p><Link to={'/campuses/editcampus'} className="btn">Edit Campus</Link></p>
+        <p><Link to={'/campuses/addstudenttocampus'} className="btn" onClick={selectedSingleCampus}>Add Student To Campus</Link></p>
         <p><a href="#" value={campus.id} className="btn" onClick={this.handleDeleteCampus}>Delete Campus</a></p>
 
         <hr />

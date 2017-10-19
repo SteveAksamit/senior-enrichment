@@ -33,7 +33,7 @@ export default class AllStudents extends Component {
     let students = this.state.students.allStudents;
     return (
       <div>
-         <p><Link to={'/createstudent'} className="btn">Create New Student</Link></p>
+         <p><Link to={'/students/createstudent'} className="btn">Create New Student</Link></p>
         <div className='header'>
           <h1 className='header-heading'>Students</h1>
         </div>
@@ -54,13 +54,14 @@ export default class AllStudents extends Component {
                   <td width="25%">
                     <Link
                       value={student.id}
-                      to={`/students/${student.id}`}>
+                      to={`/students/view/${student.id}`}>
                       {student.name}
                     </Link>
                   </td>
                   <td width="25%">{student.email}</td>
                   <td width="25%">{Object.keys(student).length === 0 ? campusName : student.campus.name}</td>
-                  <td width="25"><button className="btn" value={student.id} onClick={this.handleDeleteStudent}> Delete</button></td>
+                  <td width="12.5%"><button className="btn" value={student.id} onClick={this.handleDeleteStudent}>Delete</button></td>
+                  <td width="12.5%"><Link value={student.id} to={`/students/view/${student.id}`}><button className="btn">View</button></Link></td>
                 </tr>
               )
             })}

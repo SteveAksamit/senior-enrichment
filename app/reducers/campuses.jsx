@@ -8,7 +8,6 @@ const SELECTED_SINGLE_CAMPUS = 'SELECTED_SINGLE_CAMPUS';
 const GET_CAMPUSES = 'GET_CAMPUSES';
 const CREATE_CAMPUS = 'CREATE_CAMPUS';
 
-
 //ACTION CREATORS
 export function editTheCampus(updatedCampus) {
   return {
@@ -129,6 +128,7 @@ export default function (prevState = initialState, action) {
     case GET_CAMPUSES:
       return Object.assign({}, prevState, { allCampuses: action.allCampuses });
     case CREATE_CAMPUS:
+    console.log("CREATED CAMPUS", action.newCampus)
       return Object.assign({}, prevState, { allCampuses: prevState.allCampuses.concat(action.newCampus) });
     default:
       return prevState;

@@ -29,7 +29,7 @@ export default class AddStudentToCampus extends Component {
       campusId: campus.id
     }
     store.dispatch(editStudentCampus(studentToAddToCampus));
-    this.props.history.push(`/campuses/${campus.id}`)
+    this.props.history.push(`/campuses/view/${campus.id}`)
   }
 
   render() {

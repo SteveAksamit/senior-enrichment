@@ -41,9 +41,9 @@ export default class SingleStudent extends Component {
         <hr />
         <h3>Student Name:   {student.name} </h3>
         <h3>Student Email:   {student.email}</h3>
-        <h3>Student's Campus:  <Link value={student.campusId} to={`/campuses/${student.campusId}`}>{campusName}</Link></h3>
+        <h3>Student's Campus:  <Link value={student.campusId} to={`/campuses/view/${student.campusId}`}>{campusName}</Link></h3>
         <br />
-        <p><Link to={'/editstudent'} className="btn">Edit Student</Link></p>
+        <p><Link to={'/students/editstudent'} className="btn">Edit Student</Link></p>
         <p><a href="#" value={student.campusId} className="btn" onClick={this.handleDeleteStudent}>Delete Student</a></p>
         <hr />
       </div>

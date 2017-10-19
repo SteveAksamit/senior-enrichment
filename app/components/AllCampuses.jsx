@@ -33,7 +33,7 @@ export default class AllCampuses extends Component {
     const campuses = this.state.campuses.allCampuses;
     return (
       <div>
-          <p><Link to={'/createcampus'} className="btn">Create New Campus</Link></p>
+          <p><Link to={'/campuses/createcampus'} className="btn">Create New Campus</Link></p>
         <div className="header">
           <h1 className="header-heading">Campuses</h1>
         </div>
@@ -49,9 +49,10 @@ export default class AllCampuses extends Component {
             {campuses.map(campus => {
               return (
                 <tr key={campus.id}>
-                  <td width="33%"><Link value={campus.id} to={`/campuses/${campus.id}`}>{campus.name}</Link></td>
-                  <td width="33%">{campus.location}</td>
-                  <td width="34%"><button className="btn" value={campus.id} onClick={this.handleDeleteCampus}>Delete</button></td>
+                  <td width="40%"><Link value={campus.id} to={`/campuses/view/${campus.id}`}>{campus.name}</Link></td>
+                  <td width="40%">{campus.location}</td>
+                  <td width="10%"><button className="btn" value={campus.id} onClick={this.handleDeleteCampus}>Delete</button></td>
+                  <td width="10%"><Link value={campus.id} to={`/campuses/view/${campus.id}`}><button className="btn">View</button></Link></td>
                 </tr>
               )
             })}
