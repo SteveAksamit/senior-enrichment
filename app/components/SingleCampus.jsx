@@ -23,6 +23,12 @@ export default class SingleCampus extends Component {
   componentWillUnmount() {
     this.unsubscribe();
   }
+  componentWillReceiveProps(nextProps){
+    const campusId = nextProps.match.params.campusId;
+    store.dispatch(fetchCampus(campusId));
+  }
+
+
 
   handleDeleteCampus() {
     const campId = this.state.campuses.selectedCampus.id;
