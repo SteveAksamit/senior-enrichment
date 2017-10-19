@@ -27,15 +27,15 @@ export default class Main extends Component {
         <Navbar />
         <div className="container">
             <Route exact path="/" component={AllCampuses} />
-            <Route path="/campuses" component={AllCampuses} />
             <Route path="/campuses/view/:campusId" component={SingleCampus} />
-            <Route exact path="/students" component={AllStudents} />
-            <Route path="/students/view/:studentId" component={SingleStudent} />
-            <Route path="/campuses/editcampus" component={EditCampus} />
             <Route path="/campuses/createcampus" component={CreateCampus} />
+            <Route path="/campuses/editcampus" component={EditCampus} />
+            <Route path="/campuses/addstudenttocampus" component={AddStudentToCampus} />
+            <Route path="/campuses" component={AllCampuses} />
+            <Route path="/students/view/:studentId" component={SingleStudent} />
             <Route path="/students/editstudent" component={EditStudent} />
             <Route path="/students/createstudent" component={CreateStudent} />
-            <Route path="/campuses/addstudenttocampus" component={AddStudentToCampus} />
+            <Route path="/students" component={AllStudents} />
         </div>
       </div>
     );

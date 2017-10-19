@@ -179,6 +179,7 @@ Single styles
 	border: 1px solid transparent;
 	border-radius: .2em;
 	text-decoration: none;
+	margin-left: 1em
 }
 
 .btn:hover

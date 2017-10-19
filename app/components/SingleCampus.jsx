@@ -23,12 +23,11 @@ export default class SingleCampus extends Component {
   componentWillUnmount() {
     this.unsubscribe();
   }
+
   componentWillReceiveProps(nextProps){
     const campusId = nextProps.match.params.campusId;
     store.dispatch(fetchCampus(campusId));
   }
-
-
 
   handleDeleteCampus() {
     const campId = this.state.campuses.selectedCampus.id;
@@ -58,11 +57,14 @@ export default class SingleCampus extends Component {
             })
           }
         </ol>
-        <p><Link to={'/campuses/editcampus'} className="btn">Edit Campus</Link></p>
-        <p><Link to={'/campuses/addstudenttocampus'} className="btn" onClick={selectedSingleCampus}>Add Student To Campus</Link></p>
-        <p><a href="#" value={campus.id} className="btn" onClick={this.handleDeleteCampus}>Delete Campus</a></p>
-
-        <hr />
+        <div class="container">
+          <div class="row">
+              <Link to={'/campuses/editcampus'} className="btn">Edit Campus</Link>
+              <a href="#" value={campus.id} className="btn" onClick={this.handleDeleteCampus}>Delete Campus</a>
+              <Link to={'/campuses/addstudenttocampus'} className="btn" onClick={selectedSingleCampus}>Add Student To Campus</Link>
+            <hr></hr>
+          </div>
+        </div>
       </div>
     );
   }

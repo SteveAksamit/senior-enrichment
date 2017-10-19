@@ -29,6 +29,12 @@ export default class SingleStudent extends Component {
     this.props.history.push('/students');
   }
 
+  componentWillReceiveProps(nextProps){
+    console.log("nextProps",nextProps)
+    const studentId = nextProps.match.params.studentId;
+    store.dispatch(fetchStudent(studentId));
+  }
+
   render() {
     let campusName = ''
     const student = this.state.students.selectedStudent;
@@ -43,8 +49,8 @@ export default class SingleStudent extends Component {
         <h3>Student Email:   {student.email}</h3>
         <h3>Student's Campus:  <Link value={student.campusId} to={`/campuses/view/${student.campusId}`}>{campusName}</Link></h3>
         <br />
-        <p><Link to={'/students/editstudent'} className="btn">Edit Student</Link></p>
-        <p><a href="#" value={student.campusId} className="btn" onClick={this.handleDeleteStudent}>Delete Student</a></p>
+        <Link to={'/students/editstudent'} className="btn">Edit Student</Link>
+        <a href="#" value={student.campusId} className="btn" onClick={this.handleDeleteStudent}>Delete Student</a>
         <hr />
       </div>
     );
