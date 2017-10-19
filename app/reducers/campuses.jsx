@@ -121,7 +121,7 @@ export default function (prevState = initialState, action) {
       return prevState;
     case DELETE_CAMPUS:
       prevState.allCampuses.forEach((campus, i) => {
-        if (campus.id === action.deletedCampusId) {
+        if (campus.id == action.deletedCampusId) {
           prevState.allCampuses.splice(i, 1);
         }
       });

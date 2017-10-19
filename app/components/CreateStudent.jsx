@@ -27,7 +27,6 @@ export default class CreateStudent extends Component {
       email: event.target.email.value,
       campusId: event.target.campusId.value
     }
-    console.log("NEW STUDENT", newStudent)
     store.dispatch(createStudent(newStudent));
     this.props.history.push('/students')
   }

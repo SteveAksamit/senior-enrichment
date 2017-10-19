@@ -2,10 +2,11 @@ const router = require('express').Router();
 module.exports = router;
 const models = require('../../db/models');
 const Students = models.Students;
+const Campuses = models.Campuses
 
 //get all students
 router.get('/', ((req, res, next) => {
-  Students.findAll({})
+  Students.findAll({ include: { all: true } })
     .then(students => {
       res.json(students);
     })
@@ -17,7 +18,8 @@ router.get('/:id', ((req, res, next) => {
   Students.findAll({
     where: {
       id: req.params.id
-    }
+    },
+    include: { all: true }
   })
     .then(student => (
       res.json(student)
@@ -25,12 +27,20 @@ router.get('/:id', ((req, res, next) => {
     .catch(next);
 }));
 
-//add new student if it doesn't exist, otherwise update location
+//add new student
 router.post('/', ((req, res, next) => {
   Students.create(req.body)
-  .then(student => {
-    res.json(student);
-  })
+    .then(student => {
+      return Students.findOne({
+        where: {
+          id: student.id
+        },
+        include: {all: true}
+      })
+    })
+    .then(newStudent => {
+      res.json(newStudent)
+    })
     .catch(next);
 }));
 
@@ -51,7 +61,7 @@ router.put('/:id', ((req, res, next) => {
       res.json(updatedStudent)
     })
     .catch(next);
-  }))
+}))
 
 //update student campus
 router.put('/:id/campus', ((req, res, next) => {

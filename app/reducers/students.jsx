@@ -10,7 +10,6 @@ const GET_STUDENTS = 'GET_STUDENTS';
 const CREATE_STUDENT = 'CREATE_STUDENT';
 
 //ACTION CREATORS
-
 export function setStudent(selectedStudent){
 return {
   type: SELECTED_SINGLE_STUDENT,
@@ -53,9 +52,7 @@ export function createTheStudent(newStudent) {
   };
 }
 
-
 //THUNKS
-
 export function editStudent(student) {
   return function thunk(dispatch) {
     return axios.put(`/api/students/${student.id}`, student)
@@ -68,7 +65,6 @@ export function editStudent(student) {
 }
 
 export function editStudentCampus(student) {
-  console.log("STUDENT", student)
   return function thunk(dispatch) {
     return axios.put(`/api/students/${student.id}/campus`, student)
       .then(res => res.data)
@@ -148,7 +144,7 @@ export default function (prevState = initialState, action) {
       return prevState;
     case DELETE_STUDENT:
       prevState.allStudents.forEach((student, i) => {
-        if (student.id === action.deletedStudentId) {
+        if (student.id == action.deletedStudentId) {
           prevState.allStudents.splice(i, 1);
         }
        });

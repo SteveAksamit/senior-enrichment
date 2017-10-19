@@ -19,7 +19,6 @@ export default class SingleStudent extends Component {
       );
     }
 
-
   componentWillUnmount() {
     this.unsubscribe();
   }
@@ -30,19 +29,10 @@ export default class SingleStudent extends Component {
     this.props.history.push('/students');
   }
 
-
   render() {
-    var name = '';
+    let campusName = ''
     const student = this.state.students.selectedStudent;
-    const campusId = this.state.campuses.selectedCampus.id;
-    var campus = this.state.campuses.allCampuses.filter((theCampus) => {
-      return student.campusId === theCampus.id;
-    });
-    var campusObj = campus[0];
-    if (campusObj) {
-      var campName = campusObj.name;
-      var campId = campusObj.id;
-    }
+    if (Object.keys(student).length !== 0) campusName = student.campus.name
     return (
       <div>
         <div className="header">
@@ -51,10 +41,10 @@ export default class SingleStudent extends Component {
         <hr />
         <h3>Student Name:   {student.name} </h3>
         <h3>Student Email:   {student.email}</h3>
-        <h3>Student's Campus:  <Link value={campId} to={`/campuses/${campId}`}>{campName}</Link></h3>
+        <h3>Student's Campus:  <Link value={student.campusId} to={`/campuses/${student.campusId}`}>{campusName}</Link></h3>
         <br />
         <p><Link to={'/editstudent'} className="btn">Edit Student</Link></p>
-        <p><a href="#" value={student.id} className="btn" onClick={this.handleDeleteStudent}>Delete Student</a></p>
+        <p><a href="#" value={student.campusId} className="btn" onClick={this.handleDeleteStudent}>Delete Student</a></p>
         <hr />
       </div>
     );

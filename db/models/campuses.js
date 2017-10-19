@@ -20,10 +20,7 @@ Campuses.beforeDestroy((campus) => {
     }
   })
     .then(studentsInCampus => {
-      return studentsInCampus.destroy;
-    })
-    .then(deletedStudent => {
-      console.log(deletedStudent)
+      return studentsInCampus.destroy();
     });
 });
 

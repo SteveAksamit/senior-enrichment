@@ -23,18 +23,17 @@ export default class AllStudents extends Component {
   }
 
   handleDeleteStudent(e) {
-    console.log("in delete")
     const studentId = e.target.value;
     store.dispatch(deleteStudent(studentId));
     this.props.history.push('/students');
   }
 
   render() {
-
-
+    let campusName = '';
+    let students = this.state.students.allStudents;
     return (
       <div>
-         <p><Link to={'/createstudent'} className="btn" onClick={this.handleDeleteStudent}>Create New Student</Link></p>
+         <p><Link to={'/createstudent'} className="btn">Create New Student</Link></p>
         <div className='header'>
           <h1 className='header-heading'>Students</h1>
         </div>
@@ -48,7 +47,7 @@ export default class AllStudents extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.students.allStudents.map(student => {
+            {students.map(student => {
               let campus = this.state.campuses.allCampuses.filter(myCampus =>{return student.campusId == myCampus.id;});
               return (
                 <tr key={student.id} >
@@ -60,8 +59,8 @@ export default class AllStudents extends Component {
                     </Link>
                   </td>
                   <td width="25%">{student.email}</td>
-                  <td width="25%">{campus[0].name}</td>
-                  <td><button className="btn" value={student.id}> Delete</button></td>
+                  <td width="25%">{Object.keys(student).length === 0 ? campusName : student.campus.name}</td>
+                  <td width="25"><button className="btn" value={student.id} onClick={this.handleDeleteStudent}> Delete</button></td>
                 </tr>
               )
             })}

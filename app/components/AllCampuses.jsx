@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import store, { fetchCampuses } from '../store'
+import store, { fetchCampuses, deleteCampus } from '../store'
 
 
 export default class AllCampuses extends Component {
@@ -9,6 +9,7 @@ export default class AllCampuses extends Component {
   constructor(props) {
     super(props);
     this.state = store.getState();
+    this.handleDeleteCampus = this.handleDeleteCampus.bind(this);
   }
 
   componentDidMount() {
@@ -19,6 +20,12 @@ export default class AllCampuses extends Component {
 
   componentWillUnmount() {
     this.unsubscribe();
+  }
+
+  handleDeleteCampus(e) {
+    const campusId = e.target.value;
+    store.dispatch(deleteCampus(campusId));
+    this.props.history.push('/campuses');
   }
 
 
@@ -42,8 +49,9 @@ export default class AllCampuses extends Component {
             {campuses.map(campus => {
               return (
                 <tr key={campus.id}>
-                  <td width="50%"><Link value={campus.id} to={`/campuses/${campus.id}`}>{campus.name}</Link></td>
-                  <td width="50%">{campus.location}</td>
+                  <td width="33%"><Link value={campus.id} to={`/campuses/${campus.id}`}>{campus.name}</Link></td>
+                  <td width="33%">{campus.location}</td>
+                  <td width="34%"><button className="btn" value={campus.id} onClick={this.handleDeleteCampus}>Delete</button></td>
                 </tr>
               )
             })}
