@@ -13,6 +13,7 @@ export default class AllCampuses extends Component {
   }
 
   componentDidMount() {
+    store.dispatch(fetchCampuses());
     this.unsubscribe = store.subscribe(() =>
       this.setState(store.getState())
     )

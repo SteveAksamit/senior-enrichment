@@ -13,6 +13,7 @@ export default class AllStudents extends Component {
   }
 
   componentDidMount() {
+    store.dispatch(fetchStudents());
     this.unsubscribe = store.subscribe(() =>
       this.setState(store.getState())
     );

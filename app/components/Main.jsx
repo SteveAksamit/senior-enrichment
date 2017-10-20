@@ -11,15 +11,9 @@ import AddStudentToCampus from './AddStudentToCampus';
 import axios from 'axios';
 import { Switch, Route } from 'react-router-dom';
 import React, { Component } from 'react';
-import store, { fetchCampuses, fetchStudents } from '../store';
+import store from '../store';
 
 export default class Main extends Component {
-
-  componentDidMount() {
-    store.dispatch(fetchCampuses());
-    store.dispatch(fetchStudents());
-
-  }
 
   render() {
     return (
